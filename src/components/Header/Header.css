@@ -4,12 +4,12 @@
     background:url(header_img.png) no-repeat ;
     background-size:contain ;
     position: relative;
-    margin-left:9vw;
 }
 .header-contents{
   position: absolute;  
   display: flex;
   flex-direction: column;
+  gap: 1.5vw;
   align-items: start;
   max-width: 50%;
   bottom: 10%;
