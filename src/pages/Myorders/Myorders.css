@@ -1,0 +1,94 @@
+.container {
+  width: 80%;
+  margin: 40px auto;
+  min-height: 70vh;
+}
+
+.container h2 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.container h3 {
+  text-align: center;
+  color: #888;
+  margin-top: 50px;
+}
+
+.container > div {
+  background: #fff;
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.container > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.container p {
+  margin: 10px 0;
+  color: #444;
+  font-size: 15px;
+}
+
+.container p b {
+  color: #222;
+}
+
+.container hr {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 15px 0;
+}
+
+.container h4 {
+  color: tomato;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+
+.container p:last-child {
+  margin-bottom: 0;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+}
+
+.status-paid {
+  color: green;
+  font-weight: 600;
+}
+
+.status-pending {
+  color: red;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .container h2 {
+    font-size: 24px;
+  }
+
+  .container > div {
+    padding: 15px !important;
+  }
+
+  .container p {
+    font-size: 14px;
+  }
+}

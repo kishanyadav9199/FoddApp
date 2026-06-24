@@ -1,10 +1,23 @@
 import React, { useContext } from 'react'
 import './Cart.css'
-import { StoreContext } from '../../components/context/StoreContext'
 import { useNavigate } from 'react-router-dom'
+import { StoreContext } from '../../context/StoreContext'
 const Cart = () => {
-  const { food_list,cartItem,removeFromCart,getTotalCartAmount} = useContext(StoreContext)
+  const { food_list,cartItem,removeFromCart,getTotalCartAmount,url} = useContext(StoreContext)
   const navigate= useNavigate()
+
+
+const handleCheckout = () => {
+  if (getTotalCartAmount() === 0) {
+    alert("Cart is empty");
+    return;
+  }
+
+  navigate("/order");
+};
+
+
+
   return (
     <div className='cart'>
       <div className="cart-items">
@@ -22,9 +35,9 @@ const Cart = () => {
           if(cartItem[item._id]>0)
             {
               return(
-                <div>
+                <div key={item._id}>
                   <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+                  <img src={url+"/image/"+item.image} alt="" />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItem[item._id]}</p>
@@ -58,7 +71,7 @@ const Cart = () => {
             </div>
             <hr />
           </div>
-          <button onClick={()=>navigate('/order')}>PRPCEED TO CHECKOUT</button>
+          <button onClick={handleCheckout}>PROCEED TO CHECKOUT</button>
         </div>
         <div className="cart-promocode">
           <div>
