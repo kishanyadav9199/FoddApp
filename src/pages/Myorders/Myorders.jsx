@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Myorders.css";
+import { assets } from "../../assets/assets";
 import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
 const MyOrders = () => {
@@ -34,54 +35,31 @@ const MyOrders = () => {
   }, [token]);
 
   return (
-    <div className="container">
+    <div className="my-orders">
       <h2>My Orders</h2>
+      <div className="container">
+        {orders.map((data,index)=>{
+          return(
+            <div key={index} className="my-orders-order">
+              <img src={assets.parcel_icon} alt="" />
+              <p>{data.items.map((item,index)=>{
+                if(index === data.items.length-1){
+                  return item.name + " x " + item.quantity
+                }
+                else{
+                    return item.name + " x " + item.quantity +" , "
+                }
+              })}</p>
 
-      {orders.length === 0 ? (
-        <h3>No Orders Found</h3>
-      ) : (
-        orders.map((order) => (
-          <div
-            key={order._id}
-            style={{
-              border: "1px solid #ddd",
-              padding: "15px",
-              margin: "15px 0",
-              borderRadius: "8px",
-            }}
-          >
-            <p>
-              <b>Order ID:</b> {order._id}
-            </p>
+              <p>${data.amount}.00</p>
+              <p> Items : {data.items.length}</p>
+              <p> <span>&#x25cf;</span>    <b>{data.status}</b> </p>
+              <button >Track Order</button>
 
-            <p>
-              <b>Amount:</b> ₹{order.amount}
-            </p>
-
-            <p>
-              <b>Status:</b> {order.status}
-            </p>
-
-            <p>
-              <b>Payment:</b> {order.payment ? "Paid" : "Pending"}
-            </p>
-
-            <p>
-              <b>Date:</b> {new Date(order.date).toLocaleString()}
-            </p>
-
-            <hr />
-
-            <h4>Items</h4>
-
-            {order.items.map((item, index) => (
-              <p key={index}>
-                {item.name} × {item.quantity}
-              </p>
-            ))}
-          </div>
-        ))
-      )}
+            </div>
+          )
+        })}
+        </div>
     </div>
   );
 };
