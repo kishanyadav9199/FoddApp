@@ -1,10 +1,10 @@
 .header{
     height:34vw;
     margin:30px auto;
-<<<<<<< HEAD
+
+
     /* background:url(header_img.png) no-repeat ; */
-=======
->>>>>>> dfab796dc310b5fe52114a698bd8091dd1635f22
+
     background:url(../../../public/header_img.png) no-repeat ;
     background-size:contain ;
     position: relative;
