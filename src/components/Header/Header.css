@@ -2,6 +2,12 @@
     height:34vw;
     margin:30px auto;
 
+<<<<<<< HEAD
+=======
+
+    /* background:url(header_img.png) no-repeat ; */
+
+>>>>>>> cc433065cea791352adcbaf86437773b2c048d52
     background:url(../../../public/header_img.png) no-repeat ;
     background-size:contain ;
     position: relative;
