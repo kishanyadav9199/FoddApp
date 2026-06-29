@@ -3,9 +3,7 @@ import './FoodItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 const FoodItem = ({id,name,price,description,image}) => {
-  console.log("Food List:", image);
  const {cartItem,setCartItem,addToCart,removeFromCart,url}=useContext(StoreContext);
-   console.log("Image URL:", `${url}/image/${image}`);
 
   return (
     <div className="food-item">

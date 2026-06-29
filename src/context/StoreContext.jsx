@@ -3,9 +3,8 @@ import axios from "axios";
 export const StoreContext= createContext(null)
 const StoreContextProvider=(props)=>{
     const [cartItem, setCartItem] = useState({})
-    const url ="https://food-app-backend-8jl2.onrender.com"
-    const [token, setToken] = useState("")
-    const [food_list,setFoodList] = useState([])
+    const url = "http://localhost:4000";
+const [token, setToken] = useState(localStorage.getItem("token") || "");    const [food_list,setFoodList] = useState([])
     const addToCart= async(itemId)=>{
         if(!cartItem[itemId]){
             setCartItem((prev)=>({...prev,[itemId]:1}))
@@ -43,23 +42,35 @@ const StoreContextProvider=(props)=>{
         setFoodList(response.data.data)
     }
 
-    const loadCartData= async(token)=>{
-        const response= await axios.post(url+"/api/cart/get",{},{headers:{token}})
-        setCartItem(response.data.data ?? {})
-    }
+  const loadCartData = async (token) => {
+    try {
+      const response = await axios.post(
+        `${url}/api/cart/get`,
+        {},
+        {
+          headers: { token },
+        },
+      );
 
-    useEffect(() => {
-    
-        async function loadData(){
-            await fetchFoodList()
-            if(localStorage.getItem("token")){
-                setToken(localStorage.getItem("token"))
-                await loadCartData(localStorage.getItem("token"))
-            }
-        }
-        loadData();
-        
-    }, [])
+      if (response.data.success) {
+        setCartItem(response.data.data || {});
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+   useEffect(() => {
+     const loadData = async () => {
+       await fetchFoodList();
+
+       if (token) {
+         await loadCartData(token);
+       }
+     };
+
+     loadData();
+   }, [token]);
     const contextValue={
         food_list,
         cartItem,

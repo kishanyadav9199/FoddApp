@@ -6,7 +6,6 @@ const Cart = () => {
   const { food_list,cartItem,removeFromCart,getTotalCartAmount,url} = useContext(StoreContext)
   const navigate= useNavigate()
 
-
 const handleCheckout = () => {
   if (getTotalCartAmount() === 0) {
     alert("Cart is empty");
